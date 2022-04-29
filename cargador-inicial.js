@@ -1,4 +1,8 @@
+
 const txtOcultar = "visibility:hidden;display:none";
+
+document.removeEventListener("click", document);
+
 const divWrap = document.getElementById("fullwrap");
 divWrap.style.cssText += txtOcultar;
 
@@ -23,6 +27,14 @@ formulario.appendChild(hdKeyword);
 divForm.appendChild(formulario);
 document.body.appendChild(divForm);
 
+const panel = document.createElement("div");
+panel.setAttribute("id", "panel");
+document.body.appendChild(panel);
+
+console.log("jQuery", window.jQuery);
+
+const parser = new DOMParser();
+
 const  handlerClick = async (evt) => {
     console.log("clickado");
     const data = new FormData(formulario);
@@ -30,7 +42,14 @@ const  handlerClick = async (evt) => {
         method: "POST",
         body: data
     });
-    console.log("RES", await res.text());
+    const rawText = await res.text();
+    const parseado = parser.parseFromString(rawText, "text/html");
+    const result = parseado.querySelector("ul.results");
+    panel.appendChild(result);
+    
+    // const a =  result.getElementsByTagName("a")[0];
+    // let url =  a.href;
+    // window.location = url;
 }
 
 
