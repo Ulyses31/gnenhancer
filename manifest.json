@@ -1,0 +1,15 @@
+{
+	"manifest_version": 3,
+
+	"name": "GNula Enhancer",
+	"description": "GNula Powered Search",
+	"version": "1.0",
+	"permissions": ["tabs"],
+	"content_scripts": [
+        {
+          "matches": ["https://gnula.se/"],
+          "js": ["cargador-inicial.js"],
+          "run_at": "document_end"
+        }
+      ]
+}
