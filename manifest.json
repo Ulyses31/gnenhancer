@@ -10,6 +10,11 @@
           "matches": ["https://gnula.se/"],
           "js": ["cargador-inicial.js"],
           "run_at": "document_end"
+        },
+        {
+          "matches": ["https://gnula.se/capitulos/*/"],
+          "js": ["ficha-serie.js"],
+          "run_at": "document_end"
         }
       ]
 }
