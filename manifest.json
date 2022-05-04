@@ -1,20 +1,27 @@
 {
-	"manifest_version": 3,
+  "manifest_version": 3,
 
-	"name": "GNula Enhancer",
-	"description": "GNula Powered Search",
-	"version": "1.0",
-	"permissions": ["tabs"],
-	"content_scripts": [
-        {
-          "matches": ["https://gnula.se/"],
-          "js": ["cargador-inicial.js"],
-          "run_at": "document_end"
-        },
-        {
-          "matches": ["https://gnula.se/capitulos/*/"],
-          "js": ["ficha-serie.js"],
-          "run_at": "document_end"
-        }
-      ]
+  "name": "GNula Enhancer",
+  "description": "GNula Powered Search",
+  "version": "1.0",
+  "permissions": ["tabs"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["https://gnula.se/"],
+      "js": ["cargador-inicial.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://gnula.se/capitulos/*/"],
+      "js": ["ficha-serie.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["recaptcha-clicker.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
 }
